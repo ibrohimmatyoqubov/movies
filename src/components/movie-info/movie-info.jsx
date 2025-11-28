@@ -1,61 +1,40 @@
 import PropTypes from 'prop-types'
-import { Component } from 'react'
-import MovieService from '../../services/movie-service'
+import { useEffect, useState } from 'react'
+import useMovieService from '../../services/movie-service'
 import Error from '../error/error'
 import Spinner from '../spinner/spinner'
 import './movie-info.scss'
 
-class MovieInfo extends Component {
-	state = {
-		movie: null,
-		loading: true,
-		error: false,
-	}
+const MovieInfo = ({ movieId }) => {
+	const [movie, setMovie] = useState(null)
 
-	movieService = new MovieService()
+	const { getDetailedMovie, loading, error } = useMovieService()
 
-	componentDidMount() {
-		this.updateMovie()
-	}
+	useEffect(() => {
+		updateMovie()
+	}, [movieId])
 
-	componentDidUpdate(prevProps) {
-		if (this.props.movieId !== prevProps.movieId) {
-			this.updateMovie()
-		}
-	}
-
-	updateMovie = () => {
-		const { movieId } = this.props
+	const updateMovie = () => {
 		if (!movieId) {
 			return
 		}
 
-		this.setState({ loading: true })
-
-		this.movieService
-			.getDetailedMovie(movieId)
-			.then(res => this.setState({ movie: res }))
-			.catch(() => this.setState({ error: true }))
-			.finally(() => this.setState({ loading: false }))
+		getDetailedMovie(movieId).then(res => setMovie(res))
 	}
 
-	render() {
-		const { movie, loading, error } = this.state
+	const errorContent = error ? <Error /> : null
+	const loadingContent = loading ? <Spinner /> : null
+	const content = !(error || loading || !movie) ? (
+		<Content movie={movie} />
+	) : null
 
-		const errorContent = error ? <Error /> : null
-		const loadingContent = loading ? <Spinner /> : null
-		const content = !(error || loading || !movie) ? (
-			<Content movie={movie} />
-		) : null
-
-		return (
-			<div className='movieinfo'>
-				{errorContent}
-				{loadingContent}
-				{content}
-			</div>
-		)
-	}
+	return (
+		<div className='movieinfo'>
+			{errorContent}
+			{loadingContent}
+			{content}
+		</div>
+	)
 }
 MovieInfo.propTypes = {
 	movieId: PropTypes.number,
