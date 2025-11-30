@@ -9,8 +9,12 @@ const useMovieService = () => {
 	const _apiImg = 'https://image.tmdb.org/t/p/original'
 	const _apiPage = 1
 
-	const getPopularMovies = async () => {
-		return await request(`${_apiBase}/movie/popular?${_apiLng}&${_apiKey}`)
+	const getPopularMovies = async (page = _apiPage) => {
+		const response = await request(
+			`${_apiBase}/movie/popular?${_apiLng}&page=${page}&${_apiKey}`
+		)
+		const movies = response.results
+		return movies && movies.map(movie => _transformMovie(movie))
 	}
 
 	const getTrendingMovies = async (page = _apiPage) => {
@@ -28,8 +32,8 @@ const useMovieService = () => {
 
 	const getRandomMovie = async () => {
 		const res = await getPopularMovies()
-		const movie = res.results[Math.floor(Math.random() * res.results.length)]
-		return _transformMovie(movie)
+		const movie = res[Math.floor(Math.random() * res.length)]
+		return movie
 	}
 
 	const _transformMovie = movie => {
