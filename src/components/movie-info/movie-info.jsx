@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import useMovieService from '../../services/movie-service'
 import Error from '../error/error'
 import Spinner from '../spinner/spinner'
@@ -43,6 +44,8 @@ MovieInfo.propTypes = {
 export default MovieInfo
 
 const Content = ({ movie }) => {
+	const navigate = useNavigate()
+
 	return (
 		<>
 			<div>
@@ -51,6 +54,13 @@ const Content = ({ movie }) => {
 			<div className='hero-moive__descr'>
 				<h2>{movie.name}</h2>
 				<p>{movie.description}</p>
+				<button
+					style={{ width: '100%' }}
+					className='btn btn__light'
+					onClick={() => navigate(`/movie/${movie.id}`)}
+				>
+					details
+				</button>
 			</div>
 		</>
 	)
