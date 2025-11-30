@@ -1,80 +1,3 @@
-// .app {
-// 	&__hero {
-// 		width: 100%;
-// 		height: 80vh;
-// 		display: grid;
-// 		grid-template-columns: 60% 40%;
-// 		align-items: center;
-// 		gap: 10px;
-
-// 		&-info {
-// 			display: flex;
-// 			flex-direction: column;
-// 			gap: 5px;
-// 			h2 {
-// 				font-size: 50px;
-// 				font-style: normal;
-// 				font-weight: bold;
-// 				line-height: normal;
-// 			}
-// 			h1 {
-// 				font-size: 70px;
-// 				font-style: normal;
-// 				font-weight: bold;
-// 				line-height: normal;
-// 				background: linear-gradient(94deg, #2203ff 33.29%, #c40d60 67.01%);
-// 				background-clip: text;
-// 				-webkit-background-clip: text;
-// 				-webkit-text-fill-color: transparent;
-// 			}
-// 			p {
-// 				color: #cecece;
-// 				font-style: normal;
-// 				font-weight: 400;
-// 				line-height: normal;
-// 			}
-// 			button {
-// 				width: fit-content;
-// 			}
-// 		}
-
-// 		&-moive {
-// 			width: 100%;
-// 			height: 80vh;
-// 			box-shadow: 5px 5px 20px rgba(255, 255, 255, 0.25);
-// 			border-radius: 5px;
-
-// 			img {
-// 				width: 100%;
-// 				height: 65%;
-// 				object-fit: cover;
-// 				border-top-right-radius: 5px;
-// 				border-top-left-radius: 5px;
-// 			}
-
-// 			&__descr {
-// 				padding: 10px 20px;
-
-// 				h2 {
-// 					font-size: 24px;
-// 				}
-
-// 				p {
-// 					opacity: 0.7;
-// 					margin-top: 10px;
-// 					line-height: normal;
-// 				}
-
-// 				div {
-// 					display: grid;
-// 					grid-template-columns: 1fr 1fr;
-// 					gap: 10px;
-// 				}
-// 			}
-// 		}
-// 	}
-// }
-
 .app {
 	&__hero {
 		width: 100%;
@@ -85,7 +8,6 @@
 		gap: 20px;
 		padding: 40px 60px;
 
-		/* LEFT INFO */
 		&-info {
 			display: flex;
 			flex-direction: column;
@@ -127,7 +49,6 @@
 			}
 		}
 
-		/* RIGHT MOVIE PANEL */
 		&-moive {
 			width: 100%;
 			height: 70vh;
@@ -158,7 +79,7 @@
 					opacity: 0.85;
 					margin: 0 0 16px 0;
 					line-height: 1.4;
-					max-height: 6.6em; /* roughly limit long descriptions */
+					max-height: 6.6em;
 					overflow: hidden;
 				}
 
@@ -168,9 +89,6 @@
 			}
 		}
 
-		/* ---------- Responsive breakpoints ---------- */
-
-		/* Tablets and below: stack left and right vertically */
 		@media (max-width: 1024px) {
 			grid-template-columns: 1fr;
 			height: auto;
@@ -196,8 +114,8 @@
 				height: auto;
 
 				img {
-					height: auto; /* allow natural image height */
-					aspect-ratio: 16 / 9; /* keeps a pleasant hero ratio on stacked layout */
+					max-height: 450px;
+					aspect-ratio: 16 / 9;
 				}
 
 				&__descr {
@@ -218,7 +136,6 @@
 			}
 		}
 
-		/* Small tablets and large phones: tighten sizes */
 		@media (max-width: 768px) {
 			padding: 20px;
 			gap: 16px;
@@ -234,25 +151,42 @@
 
 			&-moive {
 				img {
+					height: 300px;
 					aspect-ratio: 4 / 3;
 				}
 			}
 		}
 
-		/* Phones: smaller typography and stacked buttons */
+		@media (max-width: 576px) {
+			&-info button {
+				height: 35px;
+				font-size: 12px;
+				padding: 8px 16px;
+			}
+			&-moive {
+				img {
+					height: auto;
+				}
+			}
+		}
+
 		@media (max-width: 480px) {
 			padding: 16px;
 			gap: 12px;
 
 			&-info {
 				h2 {
-					font-size: 24px;
+					font-size: 20px;
 				}
 				h1 {
-					font-size: 28px;
+					font-size: 25px;
 				}
 				p {
 					font-size: 14px;
+				}
+				button {
+					font-size: 10px;
+					padding: 6px 12px;
 				}
 			}
 
@@ -263,15 +197,12 @@
 
 				&__descr {
 					padding: 12px 10px;
+					font-size: 12px;
 
-					div {
-						display: flex;
-						flex-direction: column;
-						gap: 10px;
-
-						.btn {
-							width: 100%;
-						}
+					button {
+						font-size: 12px;
+						height: 35px;
+						padding: 6px 10px;
 					}
 				}
 			}
