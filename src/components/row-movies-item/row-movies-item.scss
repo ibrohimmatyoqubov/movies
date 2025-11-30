@@ -1,38 +1,3 @@
-// .list__item {
-// 	cursor: pointer;
-// 	img {
-// 		width: 100%;
-// 		transition: all 0.3s ease;
-// 		object-fit: cover;
-
-// 		&:hover {
-// 			transform: scale(1.05);
-// 		}
-// 	}
-
-// 	h2 {
-// 		margin-top: 5px;
-// 	}
-
-// 	&-descr {
-// 		margin-top: 12px;
-// 		display: flex;
-// 		align-items: center;
-// 		gap: 5px;
-
-// 		img {
-// 			width: 18px;
-// 		}
-
-// 		.dot {
-// 			width: 5px;
-// 			height: 5px;
-// 			border-radius: 100%;
-// 			background: red;
-// 		}
-// 	}
-// }
-
 .list__item {
 	cursor: pointer;
 	display: flex;
@@ -45,23 +10,18 @@
 		transform: translateY(-15px);
 	}
 
+	@media (max-width: 576px) {
+		transform: scale(0.9);
+	}
+
 	&-img {
 		width: 100%;
-		aspect-ratio: 2 / 3; // 3:2 poster nisbati — kinolarga mos
+		max-height: 340px;
 		overflow: hidden;
 		border-radius: 12px;
 		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-
-		img {
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-			transition: transform 0.4s ease;
-
-			&:hover {
-				transform: scale(1.08);
-			}
-		}
+		object-fit: cover;
+		transition: transform 0.4s ease;
 	}
 
 	h2 {
