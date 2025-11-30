@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import useMovieService from '../../services/movie-service'
 import Error from '../error/error'
 import Spinner from '../spinner/spinner'
@@ -31,10 +32,10 @@ const Hero = () => {
 				<h2>FIND MOVIES</h2>
 				<h1>TV shows and more</h1>
 				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum
-					sapiente sit placeat minus dolorum, magnam, tempora quas neque quasi,
-					sequi odit doloremque velit saepe autem facilis! Laudantium
-					consequatur accusantium mollitia.
+					Step into the world of unlimited entertainment. From blockbuster films
+					to top-rated TV series, find the stories that keep you watching.
+					Browse curated collections crafted for every mood and dive into genres
+					made just for you.
 				</p>
 				<div>
 					<button className='btn btn__secondary' onClick={updateMovie}>
@@ -54,6 +55,7 @@ const Hero = () => {
 export default Hero
 
 const Content = ({ movie }) => {
+	const navigate = useNavigate()
 	return (
 		<>
 			<div>
@@ -66,7 +68,12 @@ const Content = ({ movie }) => {
 						? `${movie.description.slice(0, 200)}...`
 						: movie.description}
 				</p>
-				<button className='btn btn__primary'>DETAILS</button>
+				<button
+					className='btn btn__primary'
+					onClick={() => navigate(`movie/${movie.id}`)}
+				>
+					DETAILS
+				</button>
 			</div>
 		</>
 	)
