@@ -1,0 +1,70 @@
+@import '../../styles/variables.scss';
+
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	&__logo {
+		a {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+		}
+
+		&-icon {
+			object-fit: cover;
+
+			@media (max-width: 768px) {
+				width: 50px;
+			}
+
+			@media (max-width: 576px) {
+				width: 30px;
+			}
+			@media (max-width: 400px) {
+				width: 25px;
+			}
+		}
+
+		&-text {
+			object-fit: cover;
+
+			@media (max-width: 768px) {
+				width: 80px;
+			}
+
+			@media (max-width: 576px) {
+				width: 50px;
+			}
+
+			@media (max-width: 375px) {
+				width: 35px;
+			}
+		}
+	}
+
+	&__menu {
+		ul {
+			display: flex;
+			justify-content: space-between;
+			font-size: 20px;
+			line-height: 32px;
+
+			@media (max-width: 480px) {
+				font-size: 15px;
+				line-height: 16px;
+			}
+
+			li {
+				margin: 0 12px;
+				a:hover {
+					color: $main-color;
+				}
+				a.active {
+					color: $main-color;
+				}
+			}
+		}
+	}
+}
