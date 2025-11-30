@@ -10,6 +10,7 @@
 	transition: all 0.3s ease;
 	font-size: 17px;
 	padding: 12px 24px;
+	text-transform: uppercase;
 
 	&__primary {
 		background-color: transparent;
@@ -39,6 +40,18 @@
 				background-color: #fff;
 				color: #000;
 			}
+		}
+	}
+	&__light {
+		text-align: center;
+		background-color: #000;
+		border: 1px solid #000;
+		color: #fff;
+
+		&:hover {
+			color: #fff;
+			background-color: #000000e0;
+			border-color: rgba(255, 255, 255, 0.1);
 		}
 	}
 }
