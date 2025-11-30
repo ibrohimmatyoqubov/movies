@@ -1,64 +1,14 @@
-export const navbar_links = [{ label: 'Home' }, { label: 'Tv Shows' }]
-
-export const movies = [
+export const navbar_links = [
 	{
-		title: 'Movie',
-		date: 2023,
-		duration: 110,
-		image: '/image2.svg',
+		route: '/',
+		label: 'Home',
 	},
 	{
-		title: 'Movie',
-		date: 2023,
-		duration: 110,
-		image: '/image2.svg',
+		route: '/trending',
+		label: 'Trending',
 	},
 	{
-		title: 'Movie',
-		date: 2023,
-		duration: 110,
-		image: '/image2.svg',
-	},
-	{
-		title: 'Movie',
-		date: 2023,
-		duration: 110,
-		image: '/image2.svg',
-	},
-	{
-		title: 'Movie',
-		date: 2023,
-		duration: 110,
-		image: '/image2.svg',
-	},
-	{
-		title: 'Movie',
-		date: 2023,
-		duration: 110,
-		image: '/image2.svg',
-	},
-	{
-		title: 'Movie',
-		date: 2023,
-		duration: 110,
-		image: '/image2.svg',
-	},
-	{
-		title: 'Movie',
-		date: 2023,
-		duration: 110,
-		image: '/image2.svg',
-	},
-	{
-		title: 'Movie',
-		date: 2023,
-		duration: 110,
-		image: '/image2.svg',
-	},
-	{
-		title: 'Movie',
-		date: 2023,
-		duration: 110,
-		image: '/image2.svg',
+		route: '/popular',
+		label: 'Popular',
 	},
 ]
