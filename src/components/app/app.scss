@@ -1,6 +1,26 @@
+.container {
+	width: 100%;
+	max-width: 1280px;
+	margin: 0 auto;
+	padding: 0 20px;
+}
+
+.app__fallback {
+	min-height: 40vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 .line {
 	width: 100%;
 	margin-top: 120px;
 	height: 2px;
 	background-color: rgba(80, 74, 121, 0.5);
+}
+
+@media (max-width: 480px) {
+	.app__container {
+		padding: 0 14px;
+	}
 }
