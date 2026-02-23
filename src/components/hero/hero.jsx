@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import useMovieService from '../../services/movie-service'
 import Error from '../error/error'
@@ -59,7 +59,15 @@ const Content = ({ movie }) => {
 	return (
 		<>
 			<div>
-				<img src={movie.backdrop_path} alt='img' />
+				<img
+					style={{ height: '300px' }}
+					src={movie.backdrop_path || '/image-not-found.png'}
+					alt={movie.name || 'movie'}
+					onError={e => {
+						e.currentTarget.onerror = null
+						e.currentTarget.src = '/image-not-found.png'
+					}}
+				/>
 			</div>
 			<div className='app__hero-moive__descr'>
 				<h2>{movie.name}</h2>
