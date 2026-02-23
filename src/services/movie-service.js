@@ -1,3 +1,4 @@
+import { useCallback } from 'react'
 import { useHttp } from '../hooks/use-http'
 
 const useMovieService = () => {
@@ -25,10 +26,42 @@ const useMovieService = () => {
 		return movies && movies.map(movie => _transformMovie(movie))
 	}
 
-	const getDetailedMovie = async id => {
-		const movie = await request(`${_apiBase}/movie/${id}?${_apiLng}&${_apiKey}`)
-		return _transformMovie(movie)
-	}
+	const getMovieTrailer = useCallback(
+		async id => {
+			try {
+				const response = await request(
+					`${_apiBase}/movie/${id}/videos?${_apiLng}&${_apiKey}`
+				)
+
+				if (!response || !response.results || response.results.length === 0) {
+					return null
+				}
+
+				const video =
+					response.results.find(
+						v => v.type === 'Trailer' && v.site === 'YouTube'
+					) || response.results.find(v => v.site === 'YouTube')
+
+				if (!video) return null
+
+				return `https://www.youtube.com/embed/${video.key}`
+			} catch (err) {
+				console.error('Trailerni olishda xatolik:', err)
+				return null
+			}
+		},
+		[request]
+	)
+
+	const getDetailedMovie = useCallback(
+		async id => {
+			const movie = await request(
+				`${_apiBase}/movie/${id}?${_apiLng}&${_apiKey}`
+			)
+			return _transformMovie(movie)
+		},
+		[request]
+	)
 
 	const getRandomMovie = async () => {
 		const res = await getPopularMovies()
@@ -51,6 +84,7 @@ const useMovieService = () => {
 	return {
 		getPopularMovies,
 		getTrendingMovies,
+		getMovieTrailer,
 		getDetailedMovie,
 		getRandomMovie,
 		clearError,
