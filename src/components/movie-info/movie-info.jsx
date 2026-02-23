@@ -49,7 +49,14 @@ const Content = ({ movie }) => {
 	return (
 		<>
 			<div>
-				<img src={movie.backdrop_path} alt='img' />
+				<img
+					src={movie.backdrop_path || '/image-not-found.png'}
+					alt={movie.name || 'movie'}
+					onError={e => {
+						e.currentTarget.onerror = null
+						e.currentTarget.src = '/image-not-found.png'
+					}}
+				/>
 			</div>
 			<div className='hero-moive__descr'>
 				<h2>{movie.name}</h2>
