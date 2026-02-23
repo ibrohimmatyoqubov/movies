@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Modal } from 'react-responsive-modal'
 import 'react-responsive-modal/styles.css'
 import { useLocation } from 'react-router-dom'
@@ -85,7 +85,35 @@ const RowMovies = () => {
 				</div>
 			)}
 
-			<Modal open={open} onClose={onClose}>
+			<Modal
+				open={open}
+				onClose={onClose}
+				styles={{
+					overlay: {
+						display: 'flex',
+						alignItems: 'center',
+						justifyContent: 'center',
+						padding: '16px',
+					},
+					modalContainer: {
+						display: 'flex',
+						alignItems: 'center',
+						justifyContent: 'center',
+						height: '100%',
+					},
+					modal: {
+						width: 'min(620px, 85vw)',
+						maxHeight: '92vh',
+						overflow: 'auto',
+						padding: '16px',
+						borderRadius: '14px',
+					},
+					closeButton: {
+						top: '10px',
+						right: '10px',
+					},
+				}}
+			>
 				<MovieInfo movieId={movieId} />
 			</Modal>
 		</div>
