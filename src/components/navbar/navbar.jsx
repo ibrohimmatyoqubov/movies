@@ -6,7 +6,7 @@ import logo from '/logo.svg'
 
 const Navbar = () => {
 	return (
-		<div className='navbar'>
+		<div className='navbar container'>
 			<div className='navbar__logo'>
 				<Link to={'/'}>
 					<img className='navbar__logo-icon' src={logo} alt='Logo' />
