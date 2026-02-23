@@ -2,6 +2,7 @@ import { Suspense, lazy } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Footer from '../footer/footer'
 import Navbar from '../navbar/navbar'
+import ScrollToTop from '../scroll-to-top/scroll-to-top'
 import Spinner from '../spinner/spinner'
 import './app.scss'
 
@@ -15,16 +16,24 @@ const App = () => {
 	return (
 		<div className='app'>
 			<Navbar />
-			<Suspense fallback={<Spinner width='70px' />}>
-				<Routes>
-					<Route path='/' element={<HomePage />} />
-					<Route path='/trending' element={<TrendingPage />} />
-					<Route path='/popular' element={<PopularPage />} />
-					<Route path='/movie/:movieId' element={<DetailedPage />} />
-					<Route path='*' element={<NotFoundPage />} />
-				</Routes>
-			</Suspense>
-
+			<main className='container'>
+				<ScrollToTop />
+				<Suspense
+					fallback={
+						<div className='app__fallback'>
+							<Spinner width='70px' />
+						</div>
+					}
+				>
+					<Routes>
+						<Route path='/' element={<HomePage />} />
+						<Route path='/trending' element={<TrendingPage />} />
+						<Route path='/popular' element={<PopularPage />} />
+						<Route path='/movie/:movieId' element={<DetailedPage />} />
+						<Route path='*' element={<NotFoundPage />} />
+					</Routes>
+				</Suspense>
+			</main>
 			<div className='line' />
 			<Footer />
 		</div>
